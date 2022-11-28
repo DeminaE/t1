@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfApp17.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp17"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="500" Unloaded="MainWindow_OnUnloaded">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Slider Name="sldSource" Value="14" Maximum="80" Minimum="1"
+                TickFrequency="6" TickPlacement="Both"
+                Grid.Row="0" Margin="10,10,0,0" AutoToolTipPlacement="TopLeft"/>
+        <DockPanel Grid.Row="1">
+            <ListBox Name="listColor" DockPanel.Dock="Left" Width="150" SelectedIndex="0">
+                <ListBoxItem Content="Красный" Tag="Red"/>
+                <ListBoxItem Content="Зеленый" Tag="Green"/>
+                <ListBoxItem Content="Синий" Tag="Blue"/>
+                <ListBoxItem Content="Дургой" Tag="#58aa45"/>
+                <ListBoxItem Content="Розовый" Tag="Pink"/>
+            </ListBox>
+            <TextBlock Name="txtTarget" DockPanel.Dock="Right"
+                       TextAlignment="Center" VerticalAlignment="Center"
+                       FontSize="{Binding Value, ElementName=sldSource, Mode=TwoWay}"
+                       Foreground="{Binding ElementName=listColor, Path=SelectedItem.Tag}"
+                       Text="{Binding Text, ElementName=txtTextSource}"/>
+         </DockPanel>
+        <TextBox Name="txtTextSource" Text="Введите текст" Grid.Row="2"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+            <Button Name="btnNormal" Content="Нормальный размер" Margin="5" Width="150"
+                    Click="btnNormal_OnClick"/>
+            <Button Name="btnLarge" Content="Крупный размер" Margin="5" Width="150"
+                    Click="btnLarge_Click"/>
+        </StackPanel>
+                    
+
+
+        <!--<TextBlock Name="txtTarget" Text="Образец текста" Grid.Row="1"
+                   TextAlignment="Center" VerticalAlignment="Center"
+                   FontSize="{Binding ElementName=sldSource, Path=Value, Mode=TwoWay}"
+                   Foreground="Red"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            
+        </StackPanel>-->
+
+
+    </Grid>
+</Window>
